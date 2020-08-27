@@ -1,0 +1,11 @@
+@setlocal
+@echo off
+::
+:: Given a partial Window Title, this will return the;
+::  Image Name (vfp9.exe)
+::  PID (16952)
+::  Window Title (Microsoft Visual FoxPro)
+::  ...and more
+::
+tasklist.exe /v /FI "WindowTitle eq Microsoft Visual Fox*"
+endlocal
