@@ -8,4 +8,15 @@
 ::  ...and more
 ::
 tasklist.exe /v /FI "WindowTitle eq Microsoft Visual Fox*"
+
+:: Methods to determine if Microsoft Visual FoxPro is running
+
+set IsRunning=%@execstr[tasklist.exe /v | find /c "vfp9.exe"]
+
+if %IsRunning eq 1 (echo vfp9.exe is running)
+
+set IsRunning=%@execstr[tasklist.exe /v | find /c "FoxPro"]
+
+if %IsRunning eq 1 (echo FoxPro is running)
+
 endlocal
