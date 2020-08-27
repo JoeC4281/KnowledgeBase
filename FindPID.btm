@@ -19,4 +19,6 @@ set IsRunning=%@execstr[tasklist.exe /v | find /c "FoxPro"]
 
 if %IsRunning eq 1 (echo FoxPro is running)
 
+if %@winpid["*FoxPro*"] gt -1 (echo Found *FoxPro*)
+
 endlocal
