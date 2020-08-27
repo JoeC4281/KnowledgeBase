@@ -1,0 +1,61 @@
+@setlocal
+@echo off
+TEXT | more
+I am a frequent user of VBScript, and have added the following to TCC26 to make using VBScript functions easier;
+
+I have created a library file;
+
+vb {
+@setlocal
+@echo off
+:: Disable the Escape Character
+setdos /X-8
+if exist r:\ (set dest=r:\vb.vbs) else (set dest=e:\utils\vb.vbs)
+>%dest  echo set fso=CreateObject("Scripting.FileSystemObject")
+>>%dest echo set stdout=fso.GetStandardStream(1)
+>>%dest echo stdout.WriteLine %*
+>>%dest echo set fso=Nothing
+script %dest
+endlocal
+}
+
+...which I load via my 4Start.btm (TCStart.btm) file as;
+
+if exist c:\utils\vb.library library /r c:\utils\vb.library
+
+I have also defined a function in my function.lst file as;
+
+vb=%@execstr[vb %$]
+
+...which I load via my 4Start.btm (TCStart.btm) file as;
+
+if exist function.lst function /r function.lst         
+
+Now, I can use a single VBScript function, for example;
+
+c:\users\jlc\utils>vb FormatCurrency(1000)
+$1,000.00
+
+..or
+
+c:\users\jlc\utils>echo %@vb[FormatCurrency(1000)]
+$1,000.00
+
+Other examples;
+
+vb FormatPercent(2/32)
+6.25%
+
+echo %@vb[FormatPercent(2/32)]
+6.25
+
+vb DateAdd("m", 1, "30-Nov-2017")
+12/30/2017
+
+vb MonthName(11)
+November
+
+vb MonthName(11, True)
+Nov
+ENDTEXT
+endlocal
