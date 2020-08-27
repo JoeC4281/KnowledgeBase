@@ -1,0 +1,16 @@
+@setlocal
+@echo off
+@echo off
+
+:: Ref. https://jpsoft.com/forums/threads/here-document-trickery.4068/#post-23010
+
+type <<- endtext
+   Shell version = %_4ver
+   Command line = %_cmdline
+   Command shell name = %_cmdproc
+   Command shell filename = %_cmdspec
+   User name = %_winuser
+   Windows version = %_winver
+endtext
+
+endlocal
