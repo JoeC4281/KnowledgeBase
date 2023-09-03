@@ -14,15 +14,21 @@ Structural CDX file not found.
 
 One method to avoid this error is to;
 
+```foxpro
 SET SAFETY OFF
+```
+
 
 before USEing the .dbf
 
 Another method is to use the following code;
 
+```foxpro
 LOCAL oExc as Exception
 TRY
     USE <table>
 CATCH TO oExc WHEN oExc.ErrorNo = 1707
     USE <table>
 ENDTRY
+```
+
